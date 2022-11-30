@@ -1,6 +1,9 @@
-import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const router = useRouter();
+
   const navLinks = [
     ["Home", "/"],
     ["Movies", "/movies"],
@@ -9,9 +12,14 @@ export default function Navbar() {
     ["Contact Us", "/contact"],
   ].map(([link, url], i) => (
     <li key={i}>
-      <a href={url} className="active:bg-secondary active:text-primary">
+      <Link
+        href={url}
+        className={`active:bg-secondary active:text-primary ${
+          router.pathname === url && "bg-secondary text-primary"
+        }`}
+      >
         {link}
-      </a>
+      </Link>
     </li>
   ));
 
@@ -20,9 +28,14 @@ export default function Navbar() {
     ["Register", "/register"],
   ].map(([link, url], i) => (
     <li key={i}>
-      <a href={url} className="active:bg-secondary active:text-primary">
+      <Link
+        href={url}
+        className={`active:bg-secondary active:text-primary ${
+          router.pathname === url && "bg-secondary text-primary"
+        }`}
+      >
         {link}
-      </a>
+      </Link>
     </li>
   ));
 
