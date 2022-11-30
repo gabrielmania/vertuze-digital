@@ -2,9 +2,9 @@ import React from "react";
 
 export default function () {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-fit py-10">
       <form className="border rounded-lg shadow-lg w-10/12 md:w-6/12 lg:w-4/12 2xl:w-3/12 flex flex-col items-center p-10">
-        <img src="" />
+        <img src="/images/logos/light-nobg.png" className="w-56 mb-10" />
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">First Name</span>
