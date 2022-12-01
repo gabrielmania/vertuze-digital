@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Movies({ movies }) {
   return (
     <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10 w-11/12 md:w-8/12 lg:w-11/12 mx-auto">
@@ -10,9 +12,12 @@ export default function Movies({ movies }) {
             <h2 className="card-title">{movie.title}</h2>
             <p>{movie.description}</p>
             <div className="card-actions justify-center">
-              <button className="btn btn-warning bg-primary">
+              <Link
+                href={`/movies/${movie._id}`}
+                className="btn btn-warning bg-primary"
+              >
                 View Detail
-              </button>
+              </Link>
             </div>
           </div>
         </div>
