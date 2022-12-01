@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Card from "../../components/Card";
 
 export default function Series({ initialSeries, numSeries }) {
   const [series, setSeries] = useState(initialSeries);
@@ -33,23 +33,13 @@ export default function Series({ initialSeries, numSeries }) {
     >
       <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10 w-11/12 md:w-8/12 lg:w-11/12 mx-auto">
         {series.map((s, i) => (
-          <div key={i} className="card bg-base-100 shadow-xl">
-            <figure>
-              <img src={s.imgSrc} alt={s.title} />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{s.title}</h2>
-              <p>{s.description}</p>
-              <div className="card-actions justify-center">
-                <Link
-                  href={`/series/${s._id}`}
-                  className="btn btn-warning bg-primary"
-                >
-                  View Detail
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Card
+            key={i}
+            title={s.title}
+            id={s._id}
+            imgSrc={s.imgSrc}
+            description={s.description}
+          />
         ))}
       </div>
     </InfiniteScroll>
