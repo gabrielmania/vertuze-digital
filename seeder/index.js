@@ -6,14 +6,11 @@ const mongoose = require("mongoose");
 const seedDb = async (type) => {
   connectDb();
   const baseUrl = `https://api.themoviedb.org/3/discover/${type}?api_key=7cf37f2d59a2ec66d4a6988d0d3b52a6&sort_by=popularity.desc&page=`;
-
   if (type === "movie") {
     await Movie.deleteMany();
-
     for (let i = 0; i < 50; i++) {
       const res = await fetch(`${baseUrl}${i + 1}`);
       const data = await res.json();
-
       for (const movie of data.results) {
         const {
           title,
@@ -22,7 +19,6 @@ const seedDb = async (type) => {
           original_language,
           poster_path,
         } = movie;
-
         const newMovie = new Movie({
           title,
           description: overview,
@@ -32,19 +28,15 @@ const seedDb = async (type) => {
           purchasePrice: Math.floor(Math.random() * 100) + 100,
           rentPrice: Math.floor(Math.random() * 50) + 50,
         });
-
         await newMovie.save();
       }
     }
   }
-
   if (type === "tv") {
     await Series.deleteMany();
-
     for (let i = 0; i < 50; i++) {
       const res = await fetch(`${baseUrl}${i + 1}`);
       const data = await res.json();
-
       for (const series of data.results) {
         const {
           name,
@@ -54,7 +46,6 @@ const seedDb = async (type) => {
           origin_country,
           poster_path,
         } = series;
-
         const newSeries = new Series({
           title: name,
           description: overview,
@@ -65,13 +56,11 @@ const seedDb = async (type) => {
           purchasePrice: Math.floor(Math.random() * 150) + 150,
           rentPrice: Math.floor(Math.random() * 75) + 75,
         });
-
         await newSeries.save();
       }
     }
   }
 };
-
 seedDb("movie").then(() => {
   seedDb("tv").then(() => {
     mongoose.connection.close();

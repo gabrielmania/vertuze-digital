@@ -10,7 +10,5 @@ const movieSchema = new Schema({
   purchasePrice: Number,
   rentPrice: String,
 });
-
 const Movie = models.Movie || model("Movie", movieSchema);
-
 module.exports = Movie;

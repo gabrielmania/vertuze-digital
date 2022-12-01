@@ -11,7 +11,5 @@ const seriesSchema = new Schema({
   purchasePrice: Number,
   rentPrice: String,
 });
-
 const Series = models.Series || model("Series", seriesSchema);
-
 module.exports = Series;

@@ -5,11 +5,9 @@ import Card from "../../components/Card";
 export default function Movies({ initialMovies, numMovies }) {
   const [movies, setMovies] = useState(initialMovies);
   const [hasMore, setHasMore] = useState(true);
-
   useEffect(() => {
     setHasMore(numMovies > movies.length ? true : false);
   }, [movies]);
-
   const fetchData = async () => {
     const res = await fetch(
       `http://localhost:3000/api/movies?limit=9&skip=${movies.length}`
@@ -17,7 +15,6 @@ export default function Movies({ initialMovies, numMovies }) {
     const newMovies = await res.json();
     setMovies((movies) => [...movies, ...newMovies]);
   };
-
   return (
     <InfiniteScroll
       dataLength={movies.length}
@@ -38,20 +35,18 @@ export default function Movies({ initialMovies, numMovies }) {
             id={movie._id}
             imgSrc={movie.imgSrc}
             description={movie.description}
+            href={`/movies/${movie._id}`}
           />
         ))}
       </div>
     </InfiniteScroll>
   );
 }
-
 export const getStaticProps = async () => {
   const res = await fetch("http:localhost:3000/api/movies?limit=9");
   const data = await res.json();
-
   const getNumMovies = await fetch("http:localhost:3000/api/movies/count");
   const numMovies = await getNumMovies.json();
-
   return {
     props: {
       initialMovies: JSON.parse(JSON.stringify(data)),

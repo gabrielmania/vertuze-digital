@@ -5,11 +5,9 @@ import Card from "../../components/Card";
 export default function Series({ initialSeries, numSeries }) {
   const [series, setSeries] = useState(initialSeries);
   const [hasMore, setHasMore] = useState(true);
-
   useEffect(() => {
     setHasMore(numSeries > series.length ? true : false);
   }, [series]);
-
   const fetchData = async () => {
     const res = await fetch(
       `http://localhost:3000/api/series?limit=9&skip=${series.length}`
@@ -18,7 +16,6 @@ export default function Series({ initialSeries, numSeries }) {
     setSeries((series) => [...series, ...newSeries]);
     console.log(series);
   };
-
   return (
     <InfiniteScroll
       dataLength={series.length}
@@ -39,20 +36,18 @@ export default function Series({ initialSeries, numSeries }) {
             id={s._id}
             imgSrc={s.imgSrc}
             description={s.description}
+            href={`/series/${s._id}`}
           />
         ))}
       </div>
     </InfiniteScroll>
   );
 }
-
 export const getStaticProps = async () => {
   const res = await fetch("http:localhost:3000/api/series?limit=9");
   const data = await res.json();
-
   const getNumSeries = await fetch("http:localhost:3000/api/movies/count");
   const numSeries = await getNumSeries.json();
-
   return {
     props: {
       initialSeries: JSON.parse(JSON.stringify(data)),
