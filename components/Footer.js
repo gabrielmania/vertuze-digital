@@ -41,11 +41,11 @@ export default function Footer() {
       <div className="flex flex-col items-center lg:items-start">
         <h5 className="text-lg">Join us on our social media pages!</h5>
         <div className="flex mt-3">
-          <i class="fa-brands fa-square-facebook fa-2xl mr-2"></i>
-          <i class="fa-brands fa-square-instagram fa-2xl mr-2"></i>
-          <i class="fa-brands fa-linkedin fa-2xl mr-2"></i>
-          <i class="fa-brands fa-square-twitter fa-2xl mr-2"></i>
-          <i class="fa-brands fa-youtube fa-2xl mr-2"></i>
+          <i className="fa-brands fa-square-facebook fa-2xl mr-2"></i>
+          <i className="fa-brands fa-square-instagram fa-2xl mr-2"></i>
+          <i className="fa-brands fa-linkedin fa-2xl mr-2"></i>
+          <i className="fa-brands fa-square-twitter fa-2xl mr-2"></i>
+          <i className="fa-brands fa-youtube fa-2xl mr-2"></i>
         </div>
       </div>
     </footer>
