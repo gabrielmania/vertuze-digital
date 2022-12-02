@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-export default function Card(props) {
-  const { title, imgSrc, description, href } = props;
-  
+export default function Card({ title, imgSrc, description, href }) {
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>

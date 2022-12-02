@@ -1,6 +1,4 @@
-export default function FormInput(props) {
-  const { label, type, name } = props;
-  
+export default function FormInput({ label, type, name }) {
   return (
     <div className="form-control w-full max-w-xs">
       <label htmlFor={name} className="label">

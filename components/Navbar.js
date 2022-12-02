@@ -14,7 +14,7 @@ export default function Navbar() {
     <li key={i}>
       <Link
         href={url}
-        className={`active:bg-secondary active:text-primary ${
+        className={`font-bold active:bg-secondary active:text-primary ${
           router.pathname === url && "bg-secondary text-primary"
         }`}
       >
@@ -30,7 +30,7 @@ export default function Navbar() {
     <li key={i}>
       <Link
         href={url}
-        className={`active:bg-secondary active:text-primary ${
+        className={`font-bold active:bg-secondary active:text-primary ${
           router.pathname === url && "bg-secondary text-primary"
         }`}
       >
@@ -38,7 +38,7 @@ export default function Navbar() {
       </Link>
     </li>
   ));
-  
+
   return (
     <div className="navbar bg-primary py-0 px-0 xl:px-24">
       <div className="navbar-start">
