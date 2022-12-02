@@ -10,7 +10,7 @@ export default function Series({ initialSeries, numSeries }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `http://localhost:3000/api/series?limit=9&skip=${series.length}`
+      `http://localhost:3000/api/series?limit=10&skip=${series.length}`
     );
     const newSeries = await res.json();
     setSeries((series) => [...series, ...newSeries]);
@@ -49,7 +49,7 @@ export default function Series({ initialSeries, numSeries }) {
           </p>
         }
       >
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10 w-11/12 md:w-8/12 lg:w-11/12 mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 py-10 w-11/12 mx-auto">
           {series.map((s, i) => (
             <Card
               key={i}
@@ -67,7 +67,7 @@ export default function Series({ initialSeries, numSeries }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http:localhost:3000/api/series?limit=9");
+  const res = await fetch("http:localhost:3000/api/series?limit=10");
   const data = await res.json();
   const getNumSeries = await fetch("http:localhost:3000/api/movies/count");
   const numSeries = await getNumSeries.json();

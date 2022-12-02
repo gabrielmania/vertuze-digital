@@ -10,7 +10,7 @@ export default function Movies({ initialMovies, numMovies }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `http://localhost:3000/api/movies?limit=9&skip=${movies.length}`
+      `http://localhost:3000/api/movies?limit=10&skip=${movies.length}`
     );
     const newMovies = await res.json();
     setMovies((movies) => [...movies, ...newMovies]);
@@ -48,7 +48,7 @@ export default function Movies({ initialMovies, numMovies }) {
           </p>
         }
       >
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10 w-11/12 md:w-8/12 lg:w-11/12 mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 py-10 w-11/12 mx-auto">
           {movies.map((movie, i) => (
             <Card
               key={i}
@@ -66,7 +66,7 @@ export default function Movies({ initialMovies, numMovies }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http:localhost:3000/api/movies?limit=9");
+  const res = await fetch("http:localhost:3000/api/movies?limit=10");
   const data = await res.json();
   const getNumMovies = await fetch("http:localhost:3000/api/movies/count");
   const numMovies = await getNumMovies.json();
