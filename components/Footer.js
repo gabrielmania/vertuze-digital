@@ -21,11 +21,11 @@ export default function Footer() {
       {link}
     </Link>
   ));
-  
+
   return (
     <footer className="footer p-10 bg-secondary text-primary flex justify-between flex-col items-center lg:items-start lg:flex-row xl:justify-evenly">
       <div className="flex flex-col items-center">
-        <img src="/images/logos/dark-nobg.png" className="w-48" />
+        <img src="/logos/dark-nobg.png" className="w-48" />
         <p>Providing reliable tech since 2018</p>
       </div>
       <div className="flex flex-col items-center lg:items-start">

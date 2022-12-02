@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <div className="navbar bg-primary py-0 px-0 xl:px-24">
       <div className="navbar-start">
-        <img src="/images/logos/dark-bg.png" className="w-20" />
+        <img src="/logos/dark-bg.png" className="w-20" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navLinks}</ul>
