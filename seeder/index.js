@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 
 const seedDb = async (type) => {
   connectDb();
+
   const baseUrl = `https://api.themoviedb.org/3/discover/${type}?api_key=7cf37f2d59a2ec66d4a6988d0d3b52a6&sort_by=popularity.desc&page=`;
+
   if (type === "movie") {
     await Movie.deleteMany();
     for (let i = 0; i < 50; i++) {
@@ -32,6 +34,7 @@ const seedDb = async (type) => {
       }
     }
   }
+
   if (type === "tv") {
     await Series.deleteMany();
     for (let i = 0; i < 50; i++) {
@@ -61,6 +64,7 @@ const seedDb = async (type) => {
     }
   }
 };
+
 seedDb("movie").then(() => {
   seedDb("tv").then(() => {
     mongoose.connection.close();

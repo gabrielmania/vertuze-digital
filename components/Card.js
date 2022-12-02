@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 export default function Card(props) {
-  const { key, title, imgSrc, description, href } = props;
+  const { title, imgSrc, description, href } = props;
+  
   return (
-    <div key={key} className="card bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl">
       <figure>
         <img src={imgSrc} alt={title} />
       </figure>

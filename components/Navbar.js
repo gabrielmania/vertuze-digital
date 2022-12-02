@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Navbar() {
   const router = useRouter();
+
   const navLinks = [
     ["Home", "/"],
     ["Movies", "/movies"],
@@ -21,6 +22,7 @@ export default function Navbar() {
       </Link>
     </li>
   ));
+
   const userLinks = [
     ["Login", "/login"],
     ["Register", "/register"],
@@ -36,6 +38,7 @@ export default function Navbar() {
       </Link>
     </li>
   ));
+  
   return (
     <div className="navbar bg-primary py-0 px-0 xl:px-24">
       <div className="navbar-start">

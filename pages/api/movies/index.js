@@ -3,7 +3,15 @@ import Movie from "../../../models/movie";
 
 export default async function moviesHandler(req, res) {
   connectDb();
-  const { limit, skip } = req.query;
-  const movies = await Movie.find().skip(skip).limit(limit);
+
+  const { q, skip, limit } = req.query;
+
+  let movies;
+  if (q === undefined) {
+    movies = await Movie.find().skip(skip).limit(limit);
+  } else {
+    movies = await Movie.find({ title: { $regex: q, $options: "i" } });
+  }
+
   res.json(movies);
 }

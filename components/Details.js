@@ -9,6 +9,7 @@ export default function Details(props) {
     purchasePrice,
     rentPrice,
   } = props;
+  
   return (
     <div className="p-5 flex flex-col lg:flex-row w-10/12 md:w-8/12 lg:w-11/12 xl:w-9/12 2xl:w-8/12 mx-auto border rounded-lg shadow-lg my-10">
       <img className="mb-5 lg:mr-5" src={imgSrc} />

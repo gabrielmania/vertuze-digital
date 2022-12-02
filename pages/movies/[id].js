@@ -10,6 +10,7 @@ export default function MovieDetails({ movie }) {
     purchasePrice,
     rentPrice,
   } = movie[0];
+
   return (
     <Details
       imgSrc={imgSrc}
@@ -22,23 +23,28 @@ export default function MovieDetails({ movie }) {
     />
   );
 }
+
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:3000/api/movies");
   const data = await res.json();
+
   const paths = data.map((movie) => {
     return {
       params: { id: movie._id },
     };
   });
+
   return {
     paths,
     fallback: false,
   };
 };
+
 export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
   const res = await fetch(`http://localhost:3000/api/movies/${id}`);
   const data = await res.json();
+  
   return {
     props: { movie: data },
   };

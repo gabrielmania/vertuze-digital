@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Footer() {
   const router = useRouter();
+
   const navLinks = [
     ["Home", "/"],
     ["Movies", "/movies"],
@@ -20,6 +21,7 @@ export default function Footer() {
       {link}
     </Link>
   ));
+  
   return (
     <footer className="footer p-10 bg-secondary text-primary flex justify-between flex-col items-center lg:items-start lg:flex-row xl:justify-evenly">
       <div className="flex flex-col items-center">
