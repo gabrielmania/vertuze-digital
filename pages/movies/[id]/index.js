@@ -13,7 +13,7 @@ export default function MovieDetails({ movie }) {
     releaseDate,
     purchasePrice,
     rentPrice,
-  } = movie[0];
+  } = movie;
 
   const deleteItem = async () => {
     const res = await fetch(`/api/movies/${_id}/delete`, { method: "DELETE" });

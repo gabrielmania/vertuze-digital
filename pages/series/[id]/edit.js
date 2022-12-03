@@ -16,7 +16,7 @@ export default function SeriesEdit({ series }) {
     firstAirDate,
     purchasePrice,
     rentPrice,
-  } = series[0];
+  } = series;
 
   const [body, setBody] = useState({
     title,

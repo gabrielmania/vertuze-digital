@@ -14,7 +14,7 @@ export default function SeriesDetail({ series }) {
     firstAirDate,
     purchasePrice,
     rentPrice,
-  } = series[0];
+  } = series;
 
   const deleteItem = async () => {
     const res = await fetch(`/api/series/${_id}/delete`, { method: "DELETE" });

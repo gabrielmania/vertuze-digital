@@ -4,6 +4,6 @@ import Movie from "../../../../models/movie";
 export default async function handler(req, res) {
   connectDb();
   const { id } = req.query;
-  const movie = await Movie.find({ _id: id });
+  const movie = await Movie.findOne({ _id: id });
   res.json(movie);
 }

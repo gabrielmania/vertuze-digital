@@ -15,7 +15,7 @@ export default function MovieEdit({ movie }) {
     releaseDate,
     purchasePrice,
     rentPrice,
-  } = movie[0];
+  } = movie;
 
   const [body, setBody] = useState({
     title,
