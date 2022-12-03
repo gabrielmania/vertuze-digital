@@ -36,6 +36,7 @@ export default function SeriesDetail({ series }) {
       rentPrice={rentPrice}
       deleteItem={deleteItem}
       href={`/series/${_id}/edit`}
+      back="/series"
     />
   );
 }

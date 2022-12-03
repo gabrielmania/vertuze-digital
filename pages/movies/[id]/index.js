@@ -35,6 +35,7 @@ export default function MovieDetails({ movie }) {
       rentPrice={rentPrice}
       deleteItem={deleteItem}
       href={`/movies/${_id}/edit`}
+      back="/movies"
     />
   );
 }

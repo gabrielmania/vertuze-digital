@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export default function Details({
-  id,
   imgSrc,
   title,
   description,
@@ -12,6 +11,7 @@ export default function Details({
   rentPrice,
   deleteItem,
   href,
+  back,
 }) {
   return (
     <div className="p-5 flex flex-col lg:flex-row w-10/12 md:w-8/12 lg:w-11/12 xl:w-9/12 2xl:w-8/12 mx-auto border rounded-lg shadow-lg my-10">
@@ -41,9 +41,9 @@ export default function Details({
             Buy Now! Php {purchasePrice}.00
           </button>
           <button className="btn mr-2 mt-2">Rent It! Php {rentPrice}.00</button>
-          <button className="btn btn-outline btn-warning mr-2 mt-2">
+          <Link href={back} className="btn btn-outline btn-warning mr-2 mt-2">
             Back
-          </button>
+          </Link>
           <Link href={href} className="btn btn-warning mr-2 mt-2">
             <i className="fa-solid fa-pen"></i>
           </Link>

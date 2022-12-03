@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FormInput from "../../../components/FormInput";
@@ -100,7 +101,12 @@ export default function SeriesEdit({ series }) {
           handleChange={handleChange}
           type="text"
         />
-        <button className="btn btn-warning btn-primary">Save!</button>
+        <div className="mt-5">
+          <button className="btn btn-warning bg-primary mr-2">Save!</button>
+          <Link href={`/series/${_id}`} className="btn btn-error">
+            Cancel
+          </Link>
+        </div>
       </form>
     </div>
   );
