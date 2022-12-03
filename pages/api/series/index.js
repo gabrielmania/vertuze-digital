@@ -1,7 +1,7 @@
 import connectDb from "../../../utils/connectDb";
 import Series from "../../../models/series";
 
-export default async function seriessHandler(req, res) {
+export default async function handler(req, res) {
   connectDb();
 
   const { q, limit, skip } = req.query;

@@ -1,7 +1,11 @@
-import Details from "../../components/Details";
+import { useRouter } from "next/router";
+import Details from "../../../components/Details";
 
 export default function SeriesDetail({ series }) {
+  const router = useRouter();
+
   const {
+    _id,
     title,
     description,
     language,
@@ -11,6 +15,14 @@ export default function SeriesDetail({ series }) {
     purchasePrice,
     rentPrice,
   } = series[0];
+
+  const deleteItem = async () => {
+    const res = await fetch(`/api/series/${_id}/delete`, { method: "DELETE" });
+
+    if (res.status === 200) {
+      router.push("/series");
+    }
+  };
 
   return (
     <Details
@@ -22,6 +34,8 @@ export default function SeriesDetail({ series }) {
       date={firstAirDate}
       purchasePrice={purchasePrice}
       rentPrice={rentPrice}
+      deleteItem={deleteItem}
+      href={`/series/${_id}/edit`}
     />
   );
 }
@@ -46,7 +60,7 @@ export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
   const res = await fetch(`http://localhost:3000/api/series/${id}`);
   const data = await res.json();
-  
+
   return {
     props: { series: data },
   };

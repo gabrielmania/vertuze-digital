@@ -1,6 +1,6 @@
-export default function FormInput({ label, type, name }) {
+export default function FormInput({ label, type, name, value, handleChange }) {
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full">
       <label htmlFor={name} className="label">
         <span className="label-text">{label}</span>
       </label>
@@ -8,8 +8,10 @@ export default function FormInput({ label, type, name }) {
         id={name}
         name={name}
         type={type}
+        value={value}
+        onChange={handleChange}
         required
-        className="input input-sm input-bordered w-full max-w-xs"
+        className="input input-sm input-bordered w-full"
       />
     </div>
   );

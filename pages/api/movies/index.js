@@ -1,7 +1,7 @@
 import connectDb from "../../../utils/connectDb";
 import Movie from "../../../models/movie";
 
-export default async function moviesHandler(req, res) {
+export default async function handler(req, res) {
   connectDb();
 
   const { q, skip, limit } = req.query;
