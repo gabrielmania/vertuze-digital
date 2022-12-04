@@ -42,7 +42,7 @@ export default function MovieDetails({ movie, user }) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/movies");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/movies`);
   const data = await res.json();
 
   const paths = data.map((movie) => {
@@ -59,7 +59,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
-  const res = await fetch(`http://localhost:3000/api/movies/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/movies/${id}`);
   const data = await res.json();
 
   return {

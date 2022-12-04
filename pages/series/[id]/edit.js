@@ -114,7 +114,9 @@ export default function SeriesEdit({ series }) {
 
 export const getServerSideProps = async (ctx) => {
   const { id } = ctx.params;
-  const res = await fetch(`http://localhost:3000/api/series/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
+  );
   const data = await res.json();
 
   return {

@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const seedDb = async (type) => {
   connectDb();
 
-  const baseUrl = `https://api.themoviedb.org/3/discover/${type}?api_key=7cf37f2d59a2ec66d4a6988d0d3b52a6&sort_by=popularity.desc&page=`;
+  const baseUrl = `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.MOVIE_DB_API}&sort_by=popularity.desc&page=`;
 
   if (type === "movie") {
     await Movie.deleteMany();

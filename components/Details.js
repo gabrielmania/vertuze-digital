@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-const ADMIN_ID = "638c13c13386a12072245c03";
-
 export default function Details({
   imgSrc,
   title,
@@ -49,7 +47,7 @@ export default function Details({
           </Link>
           {user && (
             <>
-              {user._id === ADMIN_ID && (
+              {user._id === process.env.NEXT_PUBLIC_ADMIN_ID && (
                 <>
                   <Link href={href} className="btn btn-warning mr-2 mt-2">
                     <i className="fa-solid fa-pen"></i>
@@ -61,12 +59,6 @@ export default function Details({
               )}
             </>
           )}
-          {/* <Link href={href} className="btn btn-warning mr-2 mt-2">
-            <i className="fa-solid fa-pen"></i>
-          </Link>
-          <button onClick={deleteItem} className="btn btn-error mt-2">
-            <i className="fa-solid fa-trash"></i>
-          </button> */}
         </div>
       </div>
     </div>

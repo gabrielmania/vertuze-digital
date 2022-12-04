@@ -10,14 +10,16 @@ export default function Movies({ initialMovies, numMovies }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `http://localhost:3000/api/movies?limit=10&skip=${movies.length}`
+      `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?limit=10&skip=${movies.length}`
     );
     const newMovies = await res.json();
     setMovies((movies) => [...movies, ...newMovies]);
   };
 
   const searchMovies = async () => {
-    const res = await fetch(`http://localhost:3000/api/movies?q=${search}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?q=${search}`
+    );
     const searchedMovies = await res.json();
     search === ""
       ? setMovies([...initialMovies])
@@ -66,9 +68,13 @@ export default function Movies({ initialMovies, numMovies }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http:localhost:3000/api/movies?limit=10");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?limit=10`
+  );
   const data = await res.json();
-  const getNumMovies = await fetch("http:localhost:3000/api/movies/count");
+  const getNumMovies = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
+  );
   const numMovies = await getNumMovies.json();
 
   return {

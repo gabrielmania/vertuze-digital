@@ -10,7 +10,7 @@ export default function Series({ initialSeries, numSeries }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `http://localhost:3000/api/series?limit=10&skip=${series.length}`
+      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10&skip=${series.length}`
     );
     const newSeries = await res.json();
     setSeries((series) => [...series, ...newSeries]);
@@ -18,7 +18,9 @@ export default function Series({ initialSeries, numSeries }) {
   };
 
   const searchSeries = async () => {
-    const res = await fetch(`http://localhost:3000/api/series?q=${search}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?q=${search}`
+    );
     const searchedSeries = await res.json();
     search === ""
       ? setSeries([...initialSeries])
@@ -67,9 +69,13 @@ export default function Series({ initialSeries, numSeries }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http:localhost:3000/api/series?limit=10");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10`
+  );
   const data = await res.json();
-  const getNumSeries = await fetch("http:localhost:3000/api/movies/count");
+  const getNumSeries = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
+  );
   const numSeries = await getNumSeries.json();
 
   return {

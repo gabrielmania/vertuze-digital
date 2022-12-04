@@ -43,7 +43,7 @@ export default function SeriesDetail({ series, user }) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/series");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/series`);
   const data = await res.json();
 
   const paths = data.map((series) => {
@@ -60,7 +60,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const { id } = ctx.params;
-  const res = await fetch(`http://localhost:3000/api/series/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
+  );
   const data = await res.json();
 
   return {
