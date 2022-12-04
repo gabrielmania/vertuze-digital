@@ -4,8 +4,6 @@ const Series = require("../models/series");
 const mongoose = require("mongoose");
 
 const seedDb = async (type) => {
-  connectDb();
-
   const baseUrl = `https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.MOVIE_DB_API}&sort_by=popularity.desc&page=`;
 
   if (type === "movie") {
@@ -65,8 +63,10 @@ const seedDb = async (type) => {
   }
 };
 
-seedDb("movie").then(() => {
-  seedDb("tv").then(() => {
-    mongoose.connection.close();
+connectDb().then(() => {
+  seedDb("movie").then(() => {
+    seedDb("tv").then(() => {
+      mongoose.connection.close();
+    });
   });
 });

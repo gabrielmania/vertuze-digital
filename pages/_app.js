@@ -1,8 +1,8 @@
+import Head from "next/head";
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import { useUser } from "../lib/hooks";
 
 function MyApp({ Component, pageProps }) {
