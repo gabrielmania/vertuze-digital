@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="h-screen w-full bg-home bg-center bg-no-repeat bg-cover absolute inset-0 -z-20 flex flex-col justify-center items-center px-5">
         <div className="h-screen w-full bg-black absolute -z-10 opacity-60" />
         <h1 className="font-bold text-white text-4xl sm:text-6xl mb-5 text-center">
@@ -20,16 +20,28 @@ export default function Home() {
           Browse our collection of digital goods exclusive just for you!
         </p>
         <div className="flex flex-col items-center sm:block">
-          <Link href="/movies" className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2">
+          <Link
+            href="/movies"
+            className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2"
+          >
             Movies
           </Link>
-          <Link href="/series" className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2">
+          <Link
+            href="/series"
+            className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2"
+          >
             TV Series
           </Link>
-          <Link href="/games" className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2">
+          <Link
+            href="/games"
+            className="btn btn-warning border-primary bg-primary mb-2 sm:mr-2"
+          >
             Video Games
           </Link>
-          <Link href="/music" className="btn btn-warning border-primary bg-primary">
+          <Link
+            href="/music"
+            className="btn btn-warning border-primary bg-primary"
+          >
             Music
           </Link>
         </div>

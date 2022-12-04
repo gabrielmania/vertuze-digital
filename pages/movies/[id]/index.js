@@ -1,7 +1,7 @@
 import Details from "../../../components/Details";
 import { useRouter } from "next/router";
 
-export default function MovieDetails({ movie }) {
+export default function MovieDetails({ movie, user }) {
   const router = useRouter();
 
   const {
@@ -36,6 +36,7 @@ export default function MovieDetails({ movie }) {
       deleteItem={deleteItem}
       href={`/movies/${_id}/edit`}
       back="/movies"
+      user={user}
     />
   );
 }

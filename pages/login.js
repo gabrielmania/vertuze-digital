@@ -29,7 +29,7 @@ export default function Login() {
         body: JSON.stringify(body),
       });
       if (res.status === 200) {
-        router.push("/");
+        router.push("/").then(() => router.reload());
       } else {
         throw new Error(await res.text());
       }

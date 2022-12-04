@@ -3,9 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { useUser } from "../lib/hooks";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const user = useUser();
 
   return (
     <>
@@ -17,8 +19,8 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      {router.pathname !== "/" && <Navbar />}
-      <Component {...pageProps} />
+      {router.pathname !== "/" && <Navbar user={user} />}
+      <Component {...pageProps} user={user} />
       {router.pathname !== "/" && <Footer />}
     </>
   );

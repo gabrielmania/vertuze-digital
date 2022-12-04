@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Details from "../../../components/Details";
 
-export default function SeriesDetail({ series }) {
+export default function SeriesDetail({ series, user }) {
   const router = useRouter();
 
   const {
@@ -37,6 +37,7 @@ export default function SeriesDetail({ series }) {
       deleteItem={deleteItem}
       href={`/series/${_id}/edit`}
       back="/series"
+      user={user}
     />
   );
 }

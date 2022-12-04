@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   const router = useRouter();
 
   const navLinks = [
@@ -23,21 +23,39 @@ export default function Navbar() {
     </li>
   ));
 
-  const userLinks = [
-    ["Login", "/login"],
-    ["Register", "/register"],
-  ].map(([link, url], i) => (
-    <li key={i}>
-      <Link
-        href={url}
-        className={`font-bold active:bg-secondary active:text-primary ${
-          router.pathname === url && "bg-secondary text-primary"
-        }`}
-      >
-        {link}
-      </Link>
-    </li>
-  ));
+  const userLinks = !user ? (
+    [
+      ["Login", "/login"],
+      ["Register", "/register"],
+    ].map(([link, url], i) => (
+      <li key={i}>
+        <Link
+          href={url}
+          className={`font-bold active:bg-secondary active:text-primary ${
+            router.pathname === url && "bg-secondary text-primary"
+          }`}
+        >
+          {link}
+        </Link>
+      </li>
+    ))
+  ) : (
+    <>
+      <li>
+        <button className="font-bold active:bg-secondary active:text-primary">
+          {`Hi, ${user.firstName}!`}
+        </button>
+      </li>
+      <li>
+        <Link
+          href="/api/logout"
+          className="font-bold active:bg-secondary active:text-primary"
+        >
+          Logout
+        </Link>
+      </li>
+    </>
+  );
 
   return (
     <div className="navbar bg-primary py-0 px-0 xl:px-24">
