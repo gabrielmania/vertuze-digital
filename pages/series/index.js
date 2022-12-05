@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "../../components/Card";
 import SearchBar from "../../components/SearchBar";
+import connectDb from "../../utils/connectDb";
+import Series from "../../models/series";
 
-export default function Series({ initialSeries, numSeries }) {
-  const [series, setSeries] = useState(initialSeries);
+export default function SeriesPage({ initialSeries, numSeries }) {
+  const [seriesList, setSeries] = useState(initialSeries);
   const [hasMore, setHasMore] = useState(true);
   const [search, setSearch] = useState("");
 
   const fetchData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10&skip=${series.length}`
+      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10&skip=${seriesList.length}`
     );
     const newSeries = await res.json();
-    setSeries((series) => [...series, ...newSeries]);
-    console.log(series);
+    setSeries((seriesList) => [...seriesList, ...newSeries]);
   };
 
   const searchSeries = async () => {
@@ -32,14 +33,14 @@ export default function Series({ initialSeries, numSeries }) {
   }, [search]);
 
   useEffect(() => {
-    setHasMore(numSeries > series.length ? true : false);
-  }, [series]);
+    setHasMore(numSeries > seriesList.length ? true : false);
+  }, [seriesList]);
 
   return (
     <div className="py-10">
       <SearchBar setSearch={setSearch} />
       <InfiniteScroll
-        dataLength={series.length}
+        dataLength={seriesList.length}
         next={search === "" && fetchData}
         hasMore={search === "" ? hasMore : false}
         loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
@@ -52,7 +53,7 @@ export default function Series({ initialSeries, numSeries }) {
         }
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 py-10 w-11/12 mx-auto">
-          {series.map((s, i) => (
+          {seriesList.map((s, i) => (
             <Card
               key={i}
               title={s.title}
@@ -68,19 +69,22 @@ export default function Series({ initialSeries, numSeries }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10`
-  );
-  const data = await res.json();
-  const getNumSeries = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
-  );
-  const numSeries = await getNumSeries.json();
+export const getServerSideProps = async () => {
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10`
+  // );
+  // const data = await res.json();
+  // const getNumSeries = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
+  // );
+  // const numSeries = await getNumSeries.json();
+  connectDb();
+  const series = await Series.find().limit(10);
+  const numSeries = (await Series.find()).length;
 
   return {
     props: {
-      initialSeries: JSON.parse(JSON.stringify(data)),
+      initialSeries: JSON.parse(JSON.stringify(series)),
       numSeries,
     },
   };

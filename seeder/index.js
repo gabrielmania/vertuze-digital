@@ -8,7 +8,7 @@ const seedDb = async (type) => {
 
   if (type === "movie") {
     await Movie.deleteMany();
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 4; i++) {
       const res = await fetch(`${baseUrl}${i + 1}`);
       const data = await res.json();
       for (const movie of data.results) {
@@ -35,7 +35,7 @@ const seedDb = async (type) => {
 
   if (type === "tv") {
     await Series.deleteMany();
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 4; i++) {
       const res = await fetch(`${baseUrl}${i + 1}`);
       const data = await res.json();
       for (const series of data.results) {

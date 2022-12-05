@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "../../components/Card";
 import SearchBar from "../../components/SearchBar";
+import Movie from "../../models/movie";
+import connectDb from "../../utils/connectDb";
 
 export default function Movies({ initialMovies, numMovies }) {
   const [movies, setMovies] = useState(initialMovies);
@@ -67,19 +69,22 @@ export default function Movies({ initialMovies, numMovies }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?limit=10`
-  );
-  const data = await res.json();
-  const getNumMovies = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
-  );
-  const numMovies = await getNumMovies.json();
+export const getServerSideProps = async () => {
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?limit=10`
+  // );
+  // const data = await res.json();
+  // const getNumMovies = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/count`
+  // );
+  // const numMovies = await getNumMovies.json();
+  connectDb();
+  const movies = await Movie.find().limit(10);
+  const numMovies = (await Movie.find()).length;
 
   return {
     props: {
-      initialMovies: JSON.parse(JSON.stringify(data)),
+      initialMovies: JSON.parse(JSON.stringify(movies)),
       numMovies,
     },
   };

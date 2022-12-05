@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FormInput from "../../../components/FormInput";
+import connectDb from "../../../utils/connectDb";
+import Movie from "../../../models/movie";
 
 export default function MovieEdit({ movie }) {
   const router = useRouter();
@@ -103,14 +105,34 @@ export default function MovieEdit({ movie }) {
   );
 }
 
+// export const getStaticPaths = async () => {
+//   // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/movies`);
+//   // const data = await res.json();
+//   connectDb();
+//   const movies = await Movie.find();
+
+//   const paths = movies.map((movie) => {
+//     return {
+//       params: { id: movie._id.toString() },
+//     };
+//   });
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
 export const getServerSideProps = async (ctx) => {
+  connectDb();
   const { id } = ctx.params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/${id}`
-  );
-  const data = await res.json();
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/movies/${id}`
+  // );
+  // const data = await res.json();
+  const movie = await Movie.findOne({ _id: id });
 
   return {
-    props: { movie: data },
+    props: { movie: JSON.parse(JSON.stringify(movie)) },
   };
 };

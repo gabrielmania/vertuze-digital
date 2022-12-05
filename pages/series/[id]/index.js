@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import Details from "../../../components/Details";
+import Series from "../../../models/series";
+import connectDb from "../../../utils/connectDb";
 
 export default function SeriesDetail({ series, user }) {
   const router = useRouter();
@@ -42,30 +44,34 @@ export default function SeriesDetail({ series, user }) {
   );
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/series`);
-  const data = await res.json();
+// export const getStaticPaths = async () => {
+//   // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/series`);
+//   // const data = await res.json();
+//   connectDb();
+//   const series = await Series.find();
 
-  const paths = data.map((series) => {
-    return {
-      params: { id: series._id },
-    };
-  });
+//   const paths = series.map((series) => {
+//     return {
+//       params: { id: series._id.toString() },
+//     };
+//   });
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export const getStaticProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
+  connectDb();
   const { id } = ctx.params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
-  );
-  const data = await res.json();
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
+  // );
+  // const data = await res.json();
+  const series = await Series.findOne({ _id: id });
 
   return {
-    props: { series: data },
+    props: { series: JSON.parse(JSON.stringify(series)) },
   };
 };

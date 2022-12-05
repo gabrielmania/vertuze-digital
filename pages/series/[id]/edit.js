@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FormInput from "../../../components/FormInput";
+import connectDb from "../../../utils/connectDb";
+import Series from "../../../models/series";
 
-export default function SeriesEdit({ series }) {
+export default function SeriesEdit({ seriesData }) {
   const router = useRouter();
 
   const {
@@ -16,7 +18,7 @@ export default function SeriesEdit({ series }) {
     firstAirDate,
     purchasePrice,
     rentPrice,
-  } = series;
+  } = seriesData;
 
   const [body, setBody] = useState({
     title,
@@ -112,14 +114,34 @@ export default function SeriesEdit({ series }) {
   );
 }
 
+// export const getStaticPaths = async () => {
+//   // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/series`);
+//   // const data = await res.json();
+//   connectDb();
+//   const series = await Series.find();
+
+//   const paths = series.map((series) => {
+//     return {
+//       params: { id: series._id.toString() },
+//     };
+//   });
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
 export const getServerSideProps = async (ctx) => {
+  connectDb();
   const { id } = ctx.params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
-  );
-  const data = await res.json();
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_HOST_URL}api/series/${id}`
+  // );
+  // const data = await res.json();
+  const seriesData = await Series.findOne({ _id: id });
 
   return {
-    props: { series: data },
+    props: { seriesData: JSON.parse(JSON.stringify(seriesData)) },
   };
 };
