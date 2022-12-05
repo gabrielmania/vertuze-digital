@@ -5,7 +5,7 @@ export default function MyDocument() {
   return (
     <Html>
       <Head>
-        <Script src="https://kit.fontawesome.com/ed2f2fe40a.js"></Script>
+        <script src="https://kit.fontawesome.com/ed2f2fe40a.js" async/>
       </Head>
       <body>
         <Main />

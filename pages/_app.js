@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
 import { useUser } from "../lib/hooks";
 
 function MyApp({ Component, pageProps }) {
@@ -38,7 +37,9 @@ function MyApp({ Component, pageProps }) {
       {pageLoading ? (
         <div className="h-screen flex flex-col justify-center items-center">
           <img src="/logos/light-nobg.png" className="animate-bounce w-3/12" />
-          <h5 className="text-2xl font-bold mt-5">Loading content. Please wait...</h5>
+          <h5 className="text-2xl font-bold mt-5">
+            Loading content. Please wait...
+          </h5>
         </div>
       ) : (
         <>
