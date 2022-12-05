@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Details({
@@ -16,7 +17,7 @@ export default function Details({
 }) {
   return (
     <div className="p-5 flex flex-col lg:flex-row w-10/12 md:w-8/12 lg:w-11/12 xl:w-9/12 2xl:w-8/12 mx-auto border rounded-lg shadow-lg my-10">
-      <img className="mb-5 lg:mr-5" src={imgSrc} />
+      <Image className="mb-5 lg:mb-0 lg:mr-5" src={imgSrc} alt={title} width={500} height={500} />
       <div>
         <h2 className="text-4xl font-bold mb-5">{title}</h2>
         <p className="mb-2">

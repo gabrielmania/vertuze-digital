@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -25,7 +26,13 @@ export default function Footer() {
   return (
     <footer className="footer p-10 bg-secondary text-primary flex justify-between flex-col items-center lg:items-start lg:flex-row xl:justify-evenly">
       <div className="flex flex-col items-center">
-        <img src="/logos/dark-nobg.png" className="w-48" />
+        <Image
+          src="/logos/dark-nobg.png"
+          className="w-48"
+          alt="vertuze digital logo"
+          width={500}
+          height={500}
+        />
         <p>Providing reliable tech since 2018</p>
       </div>
       <div className="flex flex-col items-center lg:items-start">

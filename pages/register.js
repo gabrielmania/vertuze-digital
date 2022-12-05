@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FormInput from "../components/FormInput";
@@ -54,7 +55,13 @@ export default function Register() {
     <>
       {isLoading ? (
         <div className="h-screen flex flex-col justify-center items-center">
-          <img src="/logos/light-nobg.png" className="animate-bounce w-3/12" />
+          <Image
+            src="/logos/light-nobg.png"
+            className="animate-bounce w-3/12"
+            alt="Vertuze Digital Logo"
+            width={500}
+            height={500}
+          />
           <h5 className="text-2xl font-bold mt-5">
             Registering you. Please wait...
           </h5>
@@ -65,7 +72,13 @@ export default function Register() {
             onSubmit={handleSubmit}
             className="border rounded-lg shadow-lg w-10/12 md:w-6/12 lg:w-4/12 2xl:w-3/12 flex flex-col items-center p-10"
           >
-            <img src="/logos/light-nobg.png" className="w-56 mb-10" />
+            <Image
+              src="/logos/light-nobg.png"
+              className="w-56 mb-10"
+              alt="Vertuze Digital Logo"
+              width={500}
+              height={500}
+            />
             <FormInput
               label="First Name"
               type="text"

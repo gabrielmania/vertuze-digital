@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -60,7 +61,7 @@ export default function Navbar({ user }) {
   return (
     <div className="navbar bg-primary py-0 px-0 xl:px-24">
       <div className="navbar-start">
-        <img src="/logos/dark-bg.png" className="w-20" />
+        <Image src="/logos/dark-bg.png" className="w-20" alt="Vertuze Digital Logo" width={500} height={500} />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navLinks}</ul>
