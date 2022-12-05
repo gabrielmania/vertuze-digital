@@ -12,7 +12,7 @@ export default function SeriesPage({ initialSeries, numSeries }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?limit=10&skip=${seriesList.length}`
+      `/api/series?limit=10&skip=${seriesList.length}`
     );
     const newSeries = await res.json();
     setSeries((seriesList) => [...seriesList, ...newSeries]);
@@ -20,7 +20,7 @@ export default function SeriesPage({ initialSeries, numSeries }) {
 
   const searchSeries = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}api/series?q=${search}`
+      `/api/series?q=${search}`
     );
     const searchedSeries = await res.json();
     search === ""

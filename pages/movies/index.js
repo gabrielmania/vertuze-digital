@@ -12,7 +12,7 @@ export default function Movies({ initialMovies, numMovies }) {
 
   const fetchData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?limit=10&skip=${movies.length}`
+      `/api/movies?limit=10&skip=${movies.length}`
     );
     const newMovies = await res.json();
     setMovies((movies) => [...movies, ...newMovies]);
@@ -20,7 +20,7 @@ export default function Movies({ initialMovies, numMovies }) {
 
   const searchMovies = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}api/movies?q=${search}`
+      `/api/movies?q=${search}`
     );
     const searchedMovies = await res.json();
     search === ""
